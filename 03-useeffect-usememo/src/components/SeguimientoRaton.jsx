@@ -1,0 +1,24 @@
+
+
+export const SeguimientoRaton = () => {
+    const [posicion, setPosicion] = useState({ x: 0, y: 0 })
+
+    useEffect(() => {
+        const manejarMovimiento = (e) => {
+            setPosicion({ x:e.clientX, y:e.clientY })
+        }
+        window.addEventListener('mousemove', manejarMovimiento)
+    return () => {
+        window.removeEventListener('mousemove', manejarMovimiento)
+        console.log('Limpiando evento de movimiento del ratón')
+    }
+    }, [])
+    
+    
+    return (
+        <div>
+            <h2>Posición del ratón:</h2>
+            <p>X: {posicion.x}, Y: {posicion.y}</p>
+        </div>
+    )
+}
